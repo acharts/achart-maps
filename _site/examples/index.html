@@ -1,0 +1,290 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>achart-maps - Demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="nico 0.5.1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link type="image/x-icon" href="/favicon.ico" rel="icon">
+    <link rel="stylesheet" href="../static/css/normalize.css" />
+    <link rel="stylesheet" href="../static/css/site.css" />
+    <link rel="stylesheet" href="../static/css/solarized.css" />
+<script>
+if (!location.port) {
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-50522089-2', 'auto');
+  ga('send', 'pageview');
+}
+</script>
+
+<script src="http://static.alipayobjects.com/seajs/seajs/2.2.0/sea.js"></script>
+
+<script>
+  seajs.config({
+    base: "../",
+    paths: {
+      'jquery': 'http://static.alipayobjects.com/jquery'
+    },
+    alias: {"achart-actived":"spm_modules/achart-actived/1.0.0/index.js","achart-canvas":"spm_modules/achart-canvas/1.0.0/index.js","achart-date":"spm_modules/achart-date/1.0.0/index.js","achart-labels":"spm_modules/achart-labels/1.0.0/index.js","achart-markers":"spm_modules/achart-markers/1.0.0/index.js","achart-plot":"spm_modules/achart-plot/1.0.0/index.js","achart-raphael":"spm_modules/achart-raphael/1.0.0/index.js","achart-series":"spm_modules/achart-series/1.0.0/index.js","achart-tooltip":"spm_modules/achart-tooltip/1.0.1/index.js","achart-util":"spm_modules/achart-util/1.0.0/index.js","color":"spm_modules/color/0.6.0/color.js","color-convert":"spm_modules/color-convert/0.3.4/index.js","color-string":"spm_modules/color-string/0.1.3/color-string.js","expect.js":"spm_modules/expect.js/0.3.1/index.js","seajs":"spm_modules/seajs/2.2.1/dist/sea.js"}
+  });
+</script>
+    <!--[if lt IE 9]>
+    <script src="../static/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+  <body class="spmjs">
+    <div class="body-wrapper">
+      <aside class="sidebar-wrapper">
+      <h1>
+          <a href="../">Achart-maps</a>
+      </h1>
+      <p class="sidebar-version">Version: <a href="http://spmjs.io/package/achart-maps" title="">1.0.0</a></p>
+        <p class="sidebar-description" data-keyword="">maps for achart</p>
+        <a class="sidebar-source" href="https://github.com/TomHuangCN/achart-maps" target="_blank">View the Project</a>
+        <ul class="sidebar-navigation" role="navigation">
+          <li><a href="../">Doc</a></li>
+          <li><a href="index.html">Demo</a></li>
+          <li><a href="../history.html">History</a></li>
+          <li><a class="test-link" href="../tests/runner.html" target="_blank">Test</a></li>
+          <li><a class="issue-link" href="https://github.com/TomHuangCN/achart-maps/issues" target="_blank">Issues</a></li>
+        </ul>
+        
+
+      </aside>
+      <div class="content-wrapper">
+        
+<article class="hentry">
+  <h1 class="entry-title">Demo</h1>
+  <div class="entry-content">
+    <h2 id="基础地图">基础地图<a href="#基础地图" class="anchor">¶</a></h2><div class="nico-insert-code">
+<div id="c1"></div></div><div class="highlight"><pre><code class="xml">
+<span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"c1"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></code></pre></div><script>seajs.use(['achart-canvas','../amap'], function(Canvas,Maps) {
+
+    var canvas = new Canvas({
+            id : 'c1',
+            width : 1000,
+            height : 1000
+        });
+
+    var map = canvas.addGroup(Maps,{
+        mapName : '中国', //选择地图
+        cfg : {
+            type : 'simple',
+            path : {
+                stroke : 'red',
+                fill : 'white',
+            },
+            centerPoint : {
+                fill : 'red'
+            },
+            text : {
+                fill : 'black'
+            },
+            show : {
+                centerCircle : true,
+                name : true
+            }
+        },
+        mouseover : function(region){
+            var cfg = region.get('cfg');
+            cfg.path.fill = 'yellow';
+            region.clear();
+            region._initRegion();
+        },
+        mouseout : function(region){
+            var cfg = region.get('cfg');
+            cfg.path.fill = 'white';
+            region.clear();
+            region._initRegion();
+        },
+        click : function(region){
+            centerPoint = region.get('centerPoint');//首都位置 
+            console.log(centerPoint);
+        }
+    })
+
+    //map.translate(100,100);
+
+});</script><div class="highlight"><pre><code class="javascript">seajs.use([<span class="string">'achart-canvas'</span>,<span class="string">'../amap'</span>], <span class="function"><span class="keyword">function</span><span class="params">(Canvas,Maps)</span> {</span>
+
+    <span class="keyword">var</span> canvas = <span class="keyword">new</span> Canvas({
+            id : <span class="string">'c1'</span>,
+            width : <span class="number">1000</span>,
+            height : <span class="number">1000</span>
+        });
+
+    <span class="keyword">var</span> map = canvas.addGroup(Maps,{
+        mapName : <span class="string">'中国'</span>, <span class="comment">//选择地图</span>
+        cfg : {
+            type : <span class="string">'simple'</span>,
+            path : {
+                stroke : <span class="string">'red'</span>,
+                fill : <span class="string">'white'</span>,
+            },
+            centerPoint : {
+                fill : <span class="string">'red'</span>
+            },
+            text : {
+                fill : <span class="string">'black'</span>
+            },
+            show : {
+                centerCircle : <span class="literal">true</span>,
+                name : <span class="literal">true</span>
+            }
+        },
+        mouseover : <span class="function"><span class="keyword">function</span><span class="params">(region)</span>{</span>
+            <span class="keyword">var</span> cfg = region.get(<span class="string">'cfg'</span>);
+            cfg.path.fill = <span class="string">'yellow'</span>;
+            region.clear();
+            region._initRegion();
+        },
+        mouseout : <span class="function"><span class="keyword">function</span><span class="params">(region)</span>{</span>
+            <span class="keyword">var</span> cfg = region.get(<span class="string">'cfg'</span>);
+            cfg.path.fill = <span class="string">'white'</span>;
+            region.clear();
+            region._initRegion();
+        },
+        click : <span class="function"><span class="keyword">function</span><span class="params">(region)</span>{</span>
+            centerPoint = region.get(<span class="string">'centerPoint'</span>);<span class="comment">//首都位置 </span>
+            console.log(centerPoint);
+        }
+    })
+
+    <span class="comment">//map.translate(100,100);</span>
+
+});</code></pre></div><h2 id="数据分布">数据分布<a href="#数据分布" class="anchor">¶</a></h2><div class="nico-insert-code">
+<div id="c2"></div></div><div class="highlight"><pre><code class="xml">
+<span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"c2"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></code></pre></div><script>seajs.use(['achart-canvas','amap'], function(Canvas,Maps,China) {
+
+    var canvas = new Canvas({
+            id : 'c2',
+            width : 1000,
+            height : 1000
+        });
+
+    var map = canvas.addGroup(Maps,{
+        mapName : '中国', //选择地图
+        cfg : {
+            type : 'distribute',//数据分布
+            path : {
+                stroke : 'red',
+                fill : '',
+            },
+            centerPoint : {
+                fill : 'red'
+            },
+            text : {
+                fill : 'black'
+            },
+            show : {
+                centerCircle : true,
+                name : true
+            },
+            distribute : {
+                fill : 'blue'
+            }
+        },
+        series : [
+            {
+                name: 'iphone3',
+                data:[
+                    {name: '西藏',value: Math.round(Math.random()*1000)},
+                    {name: '天津',value: Math.round(Math.random()*1000)},
+                    {name: '广东',value: Math.round(Math.random()*1000)},
+                    {name: '浙江',value: Math.round(Math.random()*1000)},
+                    {name: '宁夏',value: Math.round(Math.random()*1000)},
+                    {name: '江西',value: Math.round(Math.random()*1000)}
+                ]
+            }
+        ]
+    })
+
+    //map.translate(100,100);
+
+});</script><div class="highlight"><pre><code class="javascript">seajs.use([<span class="string">'achart-canvas'</span>,<span class="string">'amap'</span>], <span class="function"><span class="keyword">function</span><span class="params">(Canvas,Maps,China)</span> {</span>
+
+    <span class="keyword">var</span> canvas = <span class="keyword">new</span> Canvas({
+            id : <span class="string">'c2'</span>,
+            width : <span class="number">1000</span>,
+            height : <span class="number">1000</span>
+        });
+
+    <span class="keyword">var</span> map = canvas.addGroup(Maps,{
+        mapName : <span class="string">'中国'</span>, <span class="comment">//选择地图</span>
+        cfg : {
+            type : <span class="string">'distribute'</span>,<span class="comment">//数据分布</span>
+            path : {
+                stroke : <span class="string">'red'</span>,
+                fill : <span class="string">''</span>,
+            },
+            centerPoint : {
+                fill : <span class="string">'red'</span>
+            },
+            text : {
+                fill : <span class="string">'black'</span>
+            },
+            show : {
+                centerCircle : <span class="literal">true</span>,
+                name : <span class="literal">true</span>
+            },
+            distribute : {
+                fill : <span class="string">'blue'</span>
+            }
+        },
+        series : [
+            {
+                name: <span class="string">'iphone3'</span>,
+                data:[
+                    {name: <span class="string">'西藏'</span>,value: Math.round(Math.random()*<span class="number">1000</span>)},
+                    {name: <span class="string">'天津'</span>,value: Math.round(Math.random()*<span class="number">1000</span>)},
+                    {name: <span class="string">'广东'</span>,value: Math.round(Math.random()*<span class="number">1000</span>)},
+                    {name: <span class="string">'浙江'</span>,value: Math.round(Math.random()*<span class="number">1000</span>)},
+                    {name: <span class="string">'宁夏'</span>,value: Math.round(Math.random()*<span class="number">1000</span>)},
+                    {name: <span class="string">'江西'</span>,value: Math.round(Math.random()*<span class="number">1000</span>)}
+                ]
+            }
+        ]
+    })
+
+    <span class="comment">//map.translate(100,100);</span>
+
+});</code></pre></div>
+  </div>
+</article>
+
+      </div>
+      
+    </div>
+    <div class="footer-wrapper">
+      <footer>
+        <p class="footer-powered"><a href="http://spmjs.io">spmjs.io</a> •
+<a href="https://github.com/spmjs/spm">spm</a> •
+<a href="http://seajs.org">Sea.js</a> •
+<a href="http://lab.lepture.com/nico/">nico</a>
+        </p>
+      </footer>
+    </div>
+  </body>
+  <script src="../static/js/nprogress.js?nowrap"></script>
+  <script>
+  (function() {
+    NProgress.start();
+    window.onload = NProgress.done;
+    var ready = function(fn) {
+      var doc = document;
+      if(doc.addEventListener) {
+        doc.addEventListener('DOMContentLoaded', fn, false);
+      } else {
+        doc.attachEvent('onreadystatechange', fn);
+      }
+    };
+    ready(function() {
+      NProgress.inc(0.6);
+    }, false);
+  })();
+  </script>
+</html>

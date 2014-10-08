@@ -1,0 +1,30 @@
+{
+  "name": "achart-labels",
+  "version": "1.0.0",
+  "description": "",
+  "keywords": ["acharts","labels"],
+  "homepage": "https://github.com/acharts/achart-labels",
+  "author": "dxq613@gmail.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/acharts/achart-labels.git"
+  },
+  "bugs": {
+    "url": "https://github.com/acharts/achart-labels/issues"
+  },
+  "licenses": "MIT",
+  "spm": {
+    "main": "index.js",
+    "dependencies": {
+      "achart-util" : "1.0.0",
+      "achart-plot" : "1.0.0"
+    },
+    "devDependencies": {
+      "expect.js": "0.3.1",
+      "sinon" : "1.6.0",
+      "jquery" : "1.9.1",
+      "achart-canvas" : "1.0.0"
+    },
+    "tests": "tests/*.js"
+  }
+}

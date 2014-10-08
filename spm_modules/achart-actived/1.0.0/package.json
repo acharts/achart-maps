@@ -1,0 +1,26 @@
+{
+  "name": "achart-actived",
+  "version": "1.0.0",
+  "description": "actived mixins",
+  "keywords": ["achart","achart-actived"],
+  "homepage": "https://github.com/acharts/achart-actived",
+  "author": "dxq613",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/acharts/achart-actived.git"
+  },
+  "bugs": {
+    "url": "https://github.com/acharts/achart-actived/issues"
+  },
+  "licenses": "MIT",
+  "spm": {
+    "main": "index.js",
+    "dependencies": {
+      "achart-util" : "1.0.0"
+    },
+    "devDependencies": {
+      "expect.js": "0.3.1",
+      "achart-canvas" : "1.0.0"
+    }
+  }
+}
