@@ -1,0 +1,29 @@
+{
+  "name": "achart-maps",
+  "version": "1.0.0",
+  "description": "maps for achart",
+  "keywords": [],
+  "homepage": "",
+  "author": "有田 <huangtong.ht@alibaba-inc.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/acharts/achart-maps.git"
+  },
+  "bugs": {
+    "url": ""
+  },
+  "licenses": "MIT",
+  "spm": {
+    "main": "index.js",
+    "dependencies": {
+      "achart-canvas" : "1.0.0",
+      "achart-plot" : "1.0.0",
+      "achart-series": "1.0.0",
+      "achart-tooltip": "1.0.1",
+      "color":"0.6.0"
+    },
+    "devDependencies": {
+      "expect.js": "0.3.1"
+    }
+  }
+}
