@@ -7,6 +7,7 @@ var Util = require('achart-util'),
   Plot = require('achart-plot'),
   Data = require('./data'),
   Region = require('./region'),
+  Actived = require('achart-actived'),
   Color = require('color');
 
 /**
@@ -48,6 +49,7 @@ map.ATTRS = {
 	series : []
 };
 
+Util.mixin(map,[Actived.Group]);
 Util.augment(map,{
 	renderUI : function(){
 		var _self = this;
@@ -55,6 +57,7 @@ Util.augment(map,{
 		if (_self.get('cfg').type == "distribute") {
 			_self._iniDistribute();
 		}
+		_self._bindEvent();
 	},
 	/**
 	* 配置地图基类
@@ -87,6 +90,21 @@ Util.augment(map,{
 			_self._addRegion(dataArr[i],'');
 		};
 	},
+	_bindEvent : function(){
+		var _self = this;
+
+		_self.on('mouseover',function(ev){
+			var shape = ev.target.shape;
+			if(shape){
+				var	region = shape.get('parent');
+				if(region instanceof Region){
+					_self.fire('regionover',{region : region});
+					_self.setActivedItem(region);
+				}
+			}
+			
+		});
+	},
 	/**
 	* 添加地区
 	*/
@@ -98,23 +116,32 @@ Util.augment(map,{
 			path : data.path,
 			centerPoint : data.centerPoint,
 			namePoint : data.namePoint,
-			cfg : data.cfg?data.cfg:_self.get('cfg')
+			cfg : data.cfg?data.cfg:_self.get('cfg'),
+			activedCfg : _self.get('activedCfg')
 		};
 
-		region = region?region.addGroup(Region,attr):_self.addGroup(Region,attr);
+		/*region = region?region.addGroup(Region,attr):*/
+		_self.addGroup(Region,attr);
 
 		if(!data.children || data.children.length == 0){
+			/*var mouseover = _self.get('mouseover');
+			var mouseout = _self.get('mouseout');
+			if (mouseover) {
+				region.on("mouseover",function(ev){	
+					mouseover(region);
+					region.renderUI();
+				});
+			};
+			if (mouseout) {
+				region.on("mouseleave",function(ev){
+					mouseout(region);
+					region.renderUI();
+				});
+			};
 			region.on("click",function(ev){
-				console.log(22)
+				console.log("click事件");
 			});
-			region.on("mouseover",function(ev){
-				var mouseover = _self.get('mouseover');
-				mouseover(region);
-			});
-			region.on("mouseleave",function(ev){
-				var mouseout = _self.get('mouseout');
-				mouseout(region);
-			});
+			*/
 		}
 
 
