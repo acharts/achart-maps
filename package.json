@@ -4,7 +4,7 @@
   "description": "maps for achart",
   "keywords": [],
   "homepage": "",
-  "author": "有田 <huangtong.ht@alibaba-inc.com>",
+  "author": "有田 <418466938@qq.com>",
   "repository": {
     "type": "git",
     "url": "https://github.com/TomHuangCN/achart-maps.git"
@@ -16,15 +16,16 @@
   "spm": {
     "main": "index.js",
     "dependencies": {
+      "achart-util" : "1.0.0",
       "achart-canvas" : "1.0.0",
       "achart-plot" : "1.0.0",
       "achart-series": "1.0.0",
-      "achart-tooltip": "1.0.1",
       "achart-actived" : "1.0.0",
       "color":"0.6.0"
     },
     "devDependencies": {
-      "expect.js": "0.3.1"
+      "expect.js": "0.3.1",
+      "acharts" : "1.0.10"
     }
   }
 }

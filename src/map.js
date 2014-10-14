@@ -4,10 +4,10 @@
  */
   
 var Util = require('achart-util'),
-  Plot = require('achart-plot'),
   Data = require('./data'),
   Region = require('./region'),
   Actived = require('achart-actived'),
+  Series = require('achart-series'),
   Color = require('color');
 
 /**
@@ -16,13 +16,15 @@ var Util = require('achart-util'),
  * _get 有返回
  */
 
-var map = function(cfg){ 
-	map.superclass.constructor.call(this,cfg);
+var Map = function(cfg){
+Map.superclass.constructor.call(this,cfg);
 };
 
-Util.extend(map,Plot.Item);
+Util.extend(Map,Series);
 
-map.ATTRS = {
+Util.mixin(Map,[Actived.Group]);
+
+Map.ATTRS = {
     mapName : '',
     mapData : '',
     mapIndex : [],
@@ -49,8 +51,7 @@ map.ATTRS = {
 	series : []
 };
 
-Util.mixin(map,[Actived.Group]);
-Util.augment(map,{
+Util.augment(Map,{
 	renderUI : function(){
 		var _self = this;
 		_self._iniMap();
@@ -102,14 +103,14 @@ Util.augment(map,{
 					_self.setActivedItem(region);
 				}
 			}
-			
 		});
 	},
 	/**
 	* 添加地区
 	*/
 	_addRegion : function(data,region){
-		var _self = this;
+		var _self = this,
+			data = _self.clone(data);
 
 		var attr = {
 			name : data.name,
@@ -122,27 +123,6 @@ Util.augment(map,{
 
 		/*region = region?region.addGroup(Region,attr):*/
 		_self.addGroup(Region,attr);
-
-		if(!data.children || data.children.length == 0){
-			/*var mouseover = _self.get('mouseover');
-			var mouseout = _self.get('mouseout');
-			if (mouseover) {
-				region.on("mouseover",function(ev){	
-					mouseover(region);
-					region.renderUI();
-				});
-			};
-			if (mouseout) {
-				region.on("mouseleave",function(ev){
-					mouseout(region);
-					region.renderUI();
-				});
-			};
-			region.on("click",function(ev){
-				console.log("click事件");
-			});
-			*/
-		}
 
 
 		if (data.children && data.children.length > 0) {
@@ -358,4 +338,4 @@ Util.augment(map,{
 	    return o;   
 	}
 });
-module.exports = map;
+module.exports = Map;

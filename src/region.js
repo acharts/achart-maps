@@ -1,6 +1,7 @@
 
 var Util = require('achart-util'),
 	Plot = require('achart-plot'),
+	Series = require('achart-series'),
 	Actived = require('achart-actived'),
 	Color = require('color');
 /**
@@ -34,7 +35,7 @@ Region.ATTRS = {
 	}
 };
 
-Util.extend(Region,Plot.Item);
+Util.extend(Region,Series);
 Util.mixin(Region,[Actived]);
 Util.augment(Region,{
 	renderUI : function(){
@@ -46,9 +47,6 @@ Util.augment(Region,{
 		var _self = this,
 			cfgShow = _self.get('cfg').show,
 			m = _self.get('canvas').get('width')/1000;
-
-		_self.clear(); 
-	
 		_self.set('centerPoint',_self._resetPoint(_self.get('centerPoint'),m));
 		_self.set('namePoint',_self._resetPoint(_self.get('namePoint'),m));
 		_self.set('path',_self._resizePath(_self.get('path'),m));
@@ -91,18 +89,18 @@ Util.augment(Region,{
 	 * 设置图形的激活状态
 	 * @param {Boolean} actived 是否激活
 	 */
-	setActiveStatus : function(actived){
-		var _self = this,
-			cfg = _self.get('cfg'),
-			activedCfg = _self.get('activedCfg'),
-			path = _self.get('pathShape');
-		if(actived){
-			path.animate(activedCfg.path,400);
-		}else{
-			path.stopAnimate();
-			path.attr(cfg.path);
-		}
-	},
+	// setActiveStatus : function(actived){
+	// 	var _self = this,
+	// 		cfg = _self.get('cfg'),
+	// 		activedCfg = _self.get('activedCfg'),
+	// 		path = _self.get('pathShape');
+	// 	if(actived){
+	// 		path.animate(activedCfg.path,400);
+	// 	}else{
+	// 		path.stopAnimate();
+	// 		path.attr(cfg.path);
+	// 	}
+	// },
 	/**
 	* 绘制路径
 	*/
