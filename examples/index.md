@@ -8,56 +8,68 @@
 ````
 
 ````javascript
-seajs.use(['achart-canvas','../amap'], function(Canvas,Maps) {
+seajs.use(['acharts','../index'], function(Acharts,Map) { 
+	var Series = AChart.Series; 
 
-	var canvas = new Canvas({
-			id : 'c1',
-			width : 1000,
-			height : 1000
-		});
+	Series.Map = Map;
 
-	var map = canvas.addGroup(Maps,{
-		mapName : '中国', //选择地图
-		cfg : {
-			type : 'simple',
-			path : {
-				stroke : 'red',
-				fill : 'white',
-			},
-			centerPoint : {
-				fill : 'red'
-			},
-			text : {
-				fill : 'black'
-			},
-			show : {
-				centerCircle : true,
-				name : true
-			}
-		},
-		mouseover : function(region){
-			var cfg = region.get('cfg');
-			cfg.path.fill = 'yellow';
-			region.clear();
-			region._initRegion();
-		},
-		mouseout : function(region){
-			var cfg = region.get('cfg');
-			cfg.path.fill = 'white';
-			region.clear();
-			region._initRegion();
-		},
-		click : function(region){
-			centerPoint = region.get('centerPoint');//首都位置 
-			console.log(centerPoint);
-		}
-	})
+	var chart = new AChart({
+		id : 'c1',
+		width : 800,
+		height : 800,
+	    tooltip : {
+	      title : {
+	        'font-size' : '16px',
+	        y : 10,
+	        x : 5,
+	        fill : '#ff7c26'
+	      }
+	    },
 
-	//map.translate(100,100);
+	    legend : null,
+		series : [
+		  {   
+		    type : 'Map',
+			mapName : '中国', //选择地图
+			cfg : {
+				type : 'distribute',//数据分布
+				path : {
+					stroke : 'red',
+					fill : '',
+				},
+				centerPoint : {
+					fill : 'red'
+				},
+				text : {
+					fill : 'black'
+				},
+				show : {
+					centerCircle : true,
+					name : true
+				},
+				distribute : {
+					fill : 'blue'
+				}
+			},
+		    series : [
+		        {
+		            name: 'iphone3',
+		            data:[
+		                {name: '西藏',value: Math.round(Math.random()*1000)},
+		                {name: '新疆',value: Math.round(Math.random()*1000)}
+		            ]
+		        }
+		    ]
+		  }
+		]
+	});
+
+	chart.render();
+
 
 });
 ````
-
+<!--
 ## 数据分布
 ````html
 
@@ -114,6 +126,7 @@ seajs.use(['achart-canvas','amap'], function(Canvas,Maps,China) {
 
 });
 ````
+-->
 
 
 
