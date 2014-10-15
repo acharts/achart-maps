@@ -2,13 +2,14 @@
  * @fileOverview 图标－地图控件
  * @ignore
  */
+var AChart = require('acharts'),
+	Region = require('./region'),
+	Data = require('./data'),
+	Color = require('color'),
+	Util = AChart.Util,
+	Series = AChart.Series,
+	Actived = AChart.Actived;
   
-var Util = require('achart-util'),
-  Data = require('./data'),
-  Region = require('./region'),
-  Actived = require('achart-actived'),
-  Series = require('achart-series'),
-  Color = require('color');
 
 /**
  * @class map 

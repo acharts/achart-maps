@@ -1,6 +1,6 @@
 {
   "name": "achart-maps",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "maps for achart",
   "keywords": [],
   "homepage": "",
@@ -16,16 +16,11 @@
   "spm": {
     "main": "index.js",
     "dependencies": {
-      "achart-util" : "1.0.0",
-      "achart-canvas" : "1.0.0",
-      "achart-plot" : "1.0.0",
-      "achart-series": "1.0.0",
-      "achart-actived" : "1.0.0",
+      "acharts" : "1.0.10",
       "color":"0.6.0"
     },
     "devDependencies": {
-      "expect.js": "0.3.1",
-      "acharts" : "1.0.10"
+      "expect.js": "0.3.1"
     }
   }
 }

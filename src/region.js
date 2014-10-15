@@ -1,9 +1,9 @@
-
-var Util = require('achart-util'),
-	Plot = require('achart-plot'),
-	Series = require('achart-series'),
-	Actived = require('achart-actived'),
+var AChart = require('acharts'),
 	Color = require('color');
+	Util = AChart.Util,
+	Series = AChart.Series,
+	Actived = AChart.Actived;
+
 /**
  * @class region
  * region 负责绘制
