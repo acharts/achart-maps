@@ -49,7 +49,7 @@ Map.ATTRS = {
 			fill : 'blue'
 		}
 	},
-	series : []
+	distributeData : []
 };
 
 Util.augment(Map,{
@@ -138,7 +138,7 @@ Util.augment(Map,{
 	*/
 	_getDistributeData : function(){
 		var _self = this,
-			seriesData = _self.get('series'),
+			distributeData = _self.get('distributeData'),
 			mapData = _self.get('mapData'),
 			mapIndex = _self.get('mapIndex'),
 		    distribute = {
@@ -161,12 +161,12 @@ Util.augment(Map,{
 	        },
 	        result = [];
 
-		for (var i = 0; i < seriesData.length; i++) {
+		for (var i = 0; i < distributeData.length; i++) {
 			result[i] = _self.clone(distribute);
-			result[i].name = seriesData[i].name;
+			result[i].name = distributeData[i].name;
 
-			for (var j = 0; j < seriesData[i].data.length; j++) {
-				var data = seriesData[i].data[j],
+			for (var j = 0; j < distributeData[i].data.length; j++) {
+				var data = distributeData[i].data[j],
 					dataIndex = mapIndex[data.name];
 				if (dataIndex) {
 					obj = Util.mix(data,_self._searchMapData(dataIndex));
@@ -186,7 +186,7 @@ Util.augment(Map,{
 	*/
 	_setValueToCfg : function(baseFill){
 		var _self = this,
-			series = _self.get("series"),
+			distributeData = _self.get("distributeData"),
 			valueArr = new Array(),
 			maxValue = 0,
 			minValue = 0,
@@ -204,9 +204,9 @@ Util.augment(Map,{
 				}
 			};
 
-		for (var i = 0; i < series.length; i++) {
-			for (var j = 0; j < series[i].data.length; j++) {
-				valueArr.push(series[i].data[j].value);
+		for (var i = 0; i < distributeData.length; i++) {
+			for (var j = 0; j < distributeData[i].data.length; j++) {
+				valueArr.push(distributeData[i].data[j].value);
 			};
 		};
 
@@ -215,17 +215,17 @@ Util.augment(Map,{
 		minValue = valueArr[0];
 		H = Color(baseFill).hslArray()[0];//色度
 
-		for (var i = 0; i < series.length; i++) {
-			for (var j = 0; j < series[i].data.length; j++) {
-				rgb = valueToColor(series[i].data[j].value);
-				series[i].data[j].cfg = _self.clone(cfg);
-				series[i].data[j].cfg.path.fill = rgb;
+		for (var i = 0; i < distributeData.length; i++) {
+			for (var j = 0; j < distributeData[i].data.length; j++) {
+				rgb = valueToColor(distributeData[i].data[j].value);
+				distributeData[i].data[j].cfg = _self.clone(cfg);
+				distributeData[i].data[j].cfg.path.fill = rgb;
 			};
 		};
 
 		function valueToColor(value){
 			var rbg = '',
-				color = Color().hsl(H,(value/maxValue)*100,80);
+				color = Color().hsl(H,(value/maxValue)*100,85); 
 			return color.rgbString();
 		}
 
