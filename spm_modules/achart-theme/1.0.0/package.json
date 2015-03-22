@@ -1,0 +1,25 @@
+{
+  "name": "achart-theme",
+  "version": "1.0.0",
+  "description": "themes for acharts",
+  "keywords": ["chart"],
+  "homepage": "https://github.com/acharts/achart-theme",
+  "author": "dxq613@gmail.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/acharts/achart-theme.git"
+  },
+  "bugs": {
+    "url": "https://github.com/acharts/achart-theme/issues"
+  },
+  "licenses": "MIT",
+  "spm": {
+    "main": "index.js",
+    "dependencies": {
+      "achart-util" : "1.0.0"
+    },
+    "devDependencies": {
+      "expect.js": "0.3.1"
+    }
+  }
+}

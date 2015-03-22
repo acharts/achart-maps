@@ -1,0 +1,32 @@
+{
+  "name": "achart-axis",
+  "version": "1.0.0",
+  "description": "axis for acharts",
+  "keywords": ["achart","ahcart-axis","acharts"],
+  "homepage": "https://github.com/acharts/achart-axis",
+  "author": "dxq613@gmail.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/acharts/achart-axis.git"
+  },
+  "bugs": {
+    "url": "https://github.com/acharts/achart-axis/issues"
+  },
+  "licenses": "MIT",
+  "spm": {
+    "main": "index.js",
+    "dependencies": {
+      "achart-util" : "1.0.0",
+      "achart-plot" : "1.0.0",
+      "achart-labels" : "1.0.0",
+      "achart-date" : "1.0.0"
+    },
+    "devDependencies": {
+      "expect.js": "0.3.1",
+      "achart-canvas" : "1.0.0",
+      "sinon" : "1.6.0",
+      "jquery" : "1.9.1"
+    },
+    "tests": "tests/*-spec.js"
+  }
+}

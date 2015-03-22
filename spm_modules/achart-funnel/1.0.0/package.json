@@ -1,0 +1,30 @@
+{
+  "name": "achart-funnel",
+  "version": "1.0.0",
+  "description": "漏斗图",
+  "keywords": [],
+  "homepage": "",
+  "author": "有田 dxq613@gmail.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/acharts/achart-funnel.git"
+  },
+  "bugs": {
+    "url": ""
+  },
+  "licenses": "MIT",
+  "spm": {
+    "main": "index.js",
+    "dependencies": {
+      "achart-util" : "1.0.0",
+      "achart-series" : "1.0.0",
+      "achart-series-size" : "1.0.0",
+      "achart-actived" : "1.0.0",
+      "achart-legend" : "1.0.1"
+    },
+    "devDependencies": {
+      "expect.js": "0.3.1",
+      "acharts" : "1.0.12"
+    }
+  }
+}

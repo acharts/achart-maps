@@ -1,0 +1,30 @@
+{
+  "name": "achart-plot",
+  "version": "1.0.0",
+  "description": "https://github.com/acharts/achart-plot",
+  "keywords": [],
+  "homepage": "",
+  "author": "dxq613@gmail.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/acharts/achart-plot.git"
+  },
+  "bugs": {
+    "url": "https://github.com/acharts/achart-plot/issues"
+  },
+  "licenses": "MIT",
+  "spm": {
+    "main": "index.js",
+    "dependencies": {
+      "achart-util" : "1.0.0",
+      "achart-canvas" : "1.0.0"
+    },
+    "devDependencies": {
+      "expect.js": "0.3.1",
+      "sinon" : "1.6.0",
+      "event-simulate" : "1.0.0"
+
+
+    }
+  }
+}

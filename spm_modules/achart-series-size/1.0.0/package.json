@@ -1,0 +1,25 @@
+{
+  "name": "achart-series-size",
+  "version": "1.0.0",
+  "description": "size of series",
+  "keywords": ["acharts","achart-series-size"],
+  "homepage": "https://github.com/acharts/achart-series-size",
+  "author": "dxq613@gmail.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/acharts/achart-series-size.git"
+  },
+  "bugs": {
+    "url": "https://github.com/acharts/achart-series-size/issues"
+  },
+  "licenses": "MIT",
+  "spm": {
+    "main": "index.js",
+    "dependencies": {
+      "achart-util" : "1.0.0"
+    },
+    "devDependencies": {
+      "expect.js": "0.3.1"
+    }
+  }
+}

@@ -1,8 +1,7 @@
-var AChart = require('acharts'),
-	Color = require('color');
-	Util = AChart.Util,
-	Series = AChart.Series,
-	Actived = AChart.Actived;
+var Color = require('color'),
+	Util = require('achart-util'),
+	Series = require('achart-series'),
+	Actived = require('achart-actived');
 
 /**
  * @class region
@@ -26,12 +25,6 @@ Region.ATTRS = {
 			centerCircle : false,
 			name : false
 		}
-	},
-	activedCfg : {
-		path : {
-				stroke : 'red',
-				fill : 'yellow'
-			}
 	}
 };
 
@@ -41,6 +34,22 @@ Util.augment(Region,{
 	renderUI : function(){
 		Region.superclass.renderUI.call(this);
 		this._initRegion(); 
+		this._sortRegion(); 
+	},
+	changeColor : function(rgb){	
+		var _self = this,
+			path = _self.get('pathShape');
+		path.animate({
+			fill : rgb
+		},200);
+	},
+	_sortRegion : function(){
+		var _self = this;
+		if (_self.get('name') == "河北") {
+			_self.toBack();
+		} else if (_self.get('name') == "陕西") {
+			_self.toBack();
+		};
 	},
 	_initRegion : function(){
 		
@@ -82,25 +91,8 @@ Util.augment(Region,{
 			cfgPath = _self.get('cfg').path,
 			cfg = Util.mix({path : path},cfgPath),
 			pathShape = _self.addShape('path',cfg);
-		//_self.set('pathShape',pathShape);
+		_self.set('pathShape',pathShape);
 	},
-	/**
-	 * @protected
-	 * 设置图形的激活状态
-	 * @param {Boolean} actived 是否激活
-	 */
-	// setActiveStatus : function(actived){
-	// 	var _self = this,
-	// 		cfg = _self.get('cfg'),
-	// 		activedCfg = _self.get('activedCfg'),
-	// 		path = _self.get('pathShape');
-	// 	if(actived){
-	// 		path.animate(activedCfg.path,400);
-	// 	}else{
-	// 		path.stopAnimate();
-	// 		path.attr(cfg.path);
-	// 	}
-	// },
 	/**
 	* 绘制路径
 	*/
@@ -183,6 +175,7 @@ Util.augment(Region,{
 			return null;
 		}
 	}
+
 });
 
 module.exports = Region;
